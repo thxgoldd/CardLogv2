@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CardLogger — Premium</title>
+  <link rel="stylesheet" href="CardLog.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- Card preview -->
+  <div class="card-scene">
+    <div id="card" class="card theme-default" aria-live="polite">
+      <div class="card-inner">
+
+        <!-- FRONT -->
+        <section class="card-face card-front" aria-hidden="false">
+          <div class="top-row">
+            <div class="chip" aria-hidden="true"></div>
+            <div class="brand-wrap" aria-hidden="true">
+              <svg id="logoDefault" class="brand-svg show" viewBox="0 0 120 42" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="card">
+                <rect x="0" y="0" width="120" height="42" rx="8" fill="rgba(255,255,255,0.03)"/>
+                <text x="60" y="26" font-family="Verdana, Geneva, sans-serif" font-weight="700" font-size="14" fill="rgba(255,255,255,0.75)" text-anchor="middle">CARD</text>
+              </svg>
+              <svg id="logoVisa" class="brand-svg" viewBox="0 0 120 42" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="visa">
+                <text x="60" y="26" font-family="Verdana, Geneva, sans-serif" font-weight="800" font-size="18" fill="#111" text-anchor="middle">VISA</text>
+              </svg>
+              <svg id="logoMaster" class="brand-svg" viewBox="0 0 120 42" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="mastercard">
+                <g transform="translate(20,4)">
+                  <circle cx="24" cy="18" r="14" fill="#ff5a00"/>
+                  <circle cx="42" cy="18" r="14" fill="#eb001b" />
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <div>
+            <div class="number" id="cardNumberDisplay">#### #### #### ####</div>
+          </div>
+
+          <div class="meta">
+            <div>
+              <div style="font-size:11px; opacity:.9;">Владелец</div>
+              <div class="holder" id="cardHolderDisplay">CARD HOLDER</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:11px; opacity:.9;">До конца</div>
+              <div class="expiry" id="expiryDisplay">MM/YY</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- BACK -->
+        <section class="card-face card-back" aria-hidden="true">
+          <div>
+            <div class="magstripe" aria-hidden="true"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="cvv-box" aria-hidden="false">CVV: <span id="cvvDisplay">***</span></div>
+            <div style="font-size:12px; opacity:.85">CardLogger</div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <form class="form" onsubmit="return false;" autocomplete="off" aria-label="Card form">
+    <h2>CardLogger by Dmitriy</h2>
+    <div class="muted">Превью в реальном времени — введите номер, чтобы увидеть лого и тему</div>
+
+    <label for="cardNumber">Номер карты</label>
+    <input id="cardNumber" type="tel" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" aria-describedby="cardNumberDesc">
+    <div id="cardNumberDesc" class="muted" style="margin-top:-8px;margin-bottom:10px;font-size:12px">Visa начинается с 4. Mastercard 51–55 или 2221–2720.</div>
+
+    <label for="cardHolder">Имя держателя</label>
+    <input id="cardHolder" type="text" placeholder="IVAN IVANOV">
+
+    <div class="row" style="margin-top:6px">
+      <div class="col">
+        <label for="expiry">Срок действия</label>
+        <input id="expiry" type="text" maxlength="5" placeholder="MM/YY" inputmode="numeric" aria-label="Expiry date">
+      </div>
+      <div class="col">
+        <label for="cvv">CVV</label>
+        <div class="cvv-row">
+          <input id="cvv" type="password" maxlength="3" placeholder="***" inputmode="numeric" aria-label="CVV">
+          <button id="cvvToggle" class="cvv-toggle" type="button" aria-pressed="false">Показать</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+      <div class="type-pill" id="detectedType">—</div>
+    </div>
+
+    <!-- Кнопка Далее -->
+    <div style="display:flex;justify-content:center;margin-top:16px;">
+      <button id="nextBtn" class="cvv-toggle" type="button" disabled>Далее</button>
+    </div>
+
+  </form>
+
+</div>
+
+<script src="CardLog.js"></script>
+</body>
+</html>
