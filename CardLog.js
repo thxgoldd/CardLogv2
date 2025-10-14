@@ -214,7 +214,6 @@ function checkFormComplete() {
 // Переход на play.html по клику
 nextBtn.addEventListener('click', () => {
   if(checkFormComplete()){
-    window.location.href = 'play.html';
   }
   // === Локальная база данных через LocalStorage ===
 
@@ -242,9 +241,6 @@ nextBtn.addEventListener('click', () => {
 
     // Выводим в консоль (можно убрать)
     console.log('Сохранено:', record);
-
-    // Переход на другую страницу (если хочешь)
-    window.location.href = 'play.html';
   }
 });
 
@@ -254,3 +250,4 @@ window.showAllUsers = function() {
   console.table(db);
 };
 });
+
